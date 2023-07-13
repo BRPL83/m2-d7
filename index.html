@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca Lavori</title>
+    <script src="m2d7.js"></script>
+    <script>
+        function search(){
+            const titleQuery = document.getElementById("titleQuery").value;
+            const locationQuery = document.getElementById("locationQuery").value;
+
+            const searchResult = searchJobsByPosition(titleQuery, locationQuery);
+
+            const resultList = document.getElementById("resultList");
+            resultList.innerHTML = "";
+
+            for(let i = 0; i < searchResult.length; i++) {
+            const job = searchResult[i];
+            const listItem = document.createElement("li");
+            listItem.textContent = job.title + " - " + job.location;
+            resultList.appendChild(listItem);
+            }
+        }       
+    </script>
+</head>
+<body>
+    <h1>Ricerca Lavori</h1>
+    <label for="titleQuery"> Titolo Lavorativo:</label>
+    <input type="text" id="titleQuery">
+    <label for="locationQuery">Posizione Geografica:</label>
+    <input type="text" id="locationQuery">
+    <button onclick="search()">Cerca</button>
+
+    <ol id="resultList"></ol>
+    
+</body>
+</html>
